@@ -1,4 +1,4 @@
-package com.anushachandran1502.flightticketbooking.addflightbooking;
+package com.anushachandran1502.flightticketbooking.addflight;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,7 +10,10 @@ import com.anushachandran1502.flightticketbooking.repository.Repository;
 
 public class AddFlightView {
 	private AddFlightViewModel addFlightViewModel;
-    private List<Flight> flights;
+    public List<Flight> getFlights() {
+		return flights;
+	}
+	private List<Flight> flights;
 
 	public AddFlightView()
 	{

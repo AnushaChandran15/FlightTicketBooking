@@ -54,8 +54,8 @@ public class Flight implements Serializable{
 	public byte getTotalSeats() {
 		return totalSeats;
 	}
-	public void setTotalSeats(byte totalSeats) {
-		this.totalSeats = totalSeats;
+	public void setTotalSeats(byte i) {
+		this.totalSeats = i;
 	}
 	public int getFare() {
 		return fare;

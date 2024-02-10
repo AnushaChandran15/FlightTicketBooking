@@ -1,6 +1,6 @@
 package com.anushachandran1502.flightticketbooking;
 
-import com.anushachandran1502.flightticketbooking.addflightbooking.AddFlightView;
+import com.anushachandran1502.flightticketbooking.addflight.AddFlightView;
 import com.anushachandran1502.flightticketbooking.base.BaseView;
 import com.anushachandran1502.flightticketbooking.dto.Flight;
 import com.anushachandran1502.flightticketbooking.dto.Passenger;

@@ -1,4 +1,4 @@
-package com.anushachandran1502.flightticketbooking.addflightbooking;
+package com.anushachandran1502.flightticketbooking.addflight;
 
 //import java.io.FileNotFoundException;
 //import java.io.FileOutputStream;
@@ -23,7 +23,7 @@ public class AddFlightViewModel {
     
     }
     public void writeFlightDetailsToFile() {
-		repository.writeFile();
+		repository.writeFlightFile();
 		
 	}
 }

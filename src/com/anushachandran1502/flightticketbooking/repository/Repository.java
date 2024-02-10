@@ -29,7 +29,7 @@ public class Repository {
 	}
 	
 	
-	public List<Ticket> getTickes() {
+	public List<Ticket> getTickets() {
 		return tickets;
 	}
 	
@@ -41,21 +41,20 @@ public class Repository {
 		}
 		return repository;
 	}
-	public void writeFile() {
+	public void writeFlightFile() {
 		 try (FileOutputStream fos = new FileOutputStream("src/com/anushachandran1502/flightticketbooking/info/flights.txt");
 	             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
 	            oos.writeObject(flights);
-	            readFile();
+	            readFlightFile();
 	        } catch (IOException e) {
 	            throw new RuntimeException("Error writing flights to file", e);
 	        }
 	}
-	 public List<Flight> readFile() {
+	 public List<Flight> readFlightFile() {
          try {
              FileInputStream fis = new FileInputStream("src/com/anushachandran1502/flightticketbooking/info/flights.txt");
              ObjectInputStream ois = new ObjectInputStream(fis);
              flights = (List<Flight>) ois.readObject();
-        // System.out.println(flights);
 } catch (FileNotFoundException e) {
      } catch (IOException | ClassNotFoundException e) {
          throw new RuntimeException("Error reading flights from file", e);
@@ -63,8 +62,7 @@ public class Repository {
 		return flights;
  }
 	public List<Flight> findFlightsByStations(String from, String to) {
-        List<Flight> flights = readFile();
-       // System.out.println(flights);
+        List<Flight> flights = readFlightFile();
         List<Flight> matchingFlights = new ArrayList<>();
         for (Flight flight : flights) {
             if(flight.getFlightRoutes().contains(from) && flight.getFlightRoutes().contains(to))
@@ -76,8 +74,50 @@ public class Repository {
         }
         return matchingFlights;
 	}
+	public void writeTicketFile() {
+		FileOutputStream fos;
+		try {
+			fos = new FileOutputStream("src/com/anushachandran1502/flightticketbooking/info/tickets.txt");
+			ObjectOutputStream oos=new ObjectOutputStream(fos);
+			oos.writeObject(tickets);
+			readTicketFile();
 
-
-	
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	private List<Ticket> readTicketFile() {
+		try {
+			FileInputStream fis=new FileInputStream("src/com/anushachandran1502/flightticketbooking/info/tickets.txt");
+			ObjectInputStream ois=new ObjectInputStream(fis);
+			tickets=(List<Ticket>) ois.readObject();
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return tickets;
+	}
+	public void addNewFlightRoutes(int flightNumber, List<String> newRoutes) {
+		for(Flight flight:flights)
+		{
+			if(flight.getFlightNumber()==flightNumber)
+			{
+				List<String> flightRoutes = flight.getFlightRoutes();
+	            if (!(flightRoutes instanceof ArrayList)) {
+	                flightRoutes = new ArrayList<>(flightRoutes);
+	                flight.setFlightRoutes(flightRoutes);
+				for(String route:newRoutes)
+				{
+					if(!flight.getFlightRoutes().contains(route))
+					{
+						flight.getFlightRoutes().add(route);
+					}
+				}
+			}
+		}
+	}
+		writeFlightFile();	
+		//System.out.println(flights);
+	}	
 
 }

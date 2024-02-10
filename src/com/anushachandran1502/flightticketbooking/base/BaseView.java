@@ -26,7 +26,7 @@ public class BaseView {
 					bView.getPNRStatus();
 					break;
 				case 3:
-					
+                    bView.searchFlight();
 					break;
 				case 4:
 					bView.getBookedTickets();
